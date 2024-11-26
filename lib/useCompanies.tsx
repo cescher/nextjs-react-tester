@@ -26,17 +26,12 @@ const useCompanies = ()=>{
                 const response = await fetch('https://venefish.enesien.com/api/companies');
                 const data:CompaniesResponse = await response.json();
 
-
-
                 if (Array.isArray(data)) {
                     setCompanies(data);
                 } else {
                     alert('Unexpected type of companies response.');
                 }
 
-              console.log('data: ',data);
-               // console.log('data.companies: ',data.companies);
-               // setCompanies(data.companies);
                 setLoading(false);
 
             }catch(err:unknown){

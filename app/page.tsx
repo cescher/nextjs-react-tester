@@ -15,15 +15,9 @@ import {
   TableRow,
   TableFooter
 } from "@/components/ui/table"
-export default function Home() {
-  const {companies, loading, error} = useCompanies();
-  console.log('companies: ',companies);
-  console.log('loading: ',loading);
-  console.log('error: ',error);
+export default function Home() {const {companies, loading, error} = useCompanies();
  const totalEmployees = companies.reduce((accumulator , company) => accumulator + company.employees,0);
  const totalRevenue = companies.reduce((accumulator, company)=>accumulator + company.revenue,0);
- console.log('totalEmployees: ',totalEmployees);
- console.log('totalRevenue: ',totalRevenue);
   return (
     <div className="min-h-screen min-w-screen bg-gradient-to-tl from-blue-400 to-blue-700 text-white space-y-6">
       <div className="bg-white/10 p-4">
@@ -42,10 +36,11 @@ export default function Home() {
           <CardContent>
             <div>
               {loading && <p>Loading...</p>}
-              {!loading && companies.length >0 && (
+              {error && <p className="text-red-500">Error: {error}</p>}
+              {!loading && !error && companies.length >0 && (
                   <div>
                       <div className="bg-gray-300 font-bold p-4 text-xl">
-                          Companies List
+                          Companies
                       </div>
                       <Table>
                           <TableHeader>
